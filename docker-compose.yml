@@ -1,0 +1,34 @@
+version: "3.7"
+
+services:
+  caddy:
+    build:
+      context: .
+      dockerfile: Dockerfile-caddy
+    container_name: caddy
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    networks:
+      - net1
+      - net2
+
+  vhost1:
+    build:
+      context: .
+      dockerfile: Dockerfile-vhost1
+    container_name: vhost1
+    networks:
+      - net1
+
+  vhost2:
+    build:
+      context: .
+      dockerfile: Dockerfile-vhost2
+    container_name: vhost2
+    networks:
+      - net2
+
+networks:
+  net1:
+  net2:
