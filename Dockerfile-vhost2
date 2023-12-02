@@ -1,7 +1,0 @@
-FROM python:3.9.13-alpine3.15
-
-RUN pip install flask-restful python-weather jsonify requests
-
-COPY ./vhost2/server.py /tmp/server.py
-
-CMD python /tmp/server.py
