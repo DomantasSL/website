@@ -1,5 +1,6 @@
 const express = require('express');
 const mysql = require('mysql');
+const path = require('path');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -21,7 +22,13 @@ app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
-  });
+});
+
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+});
 
 app.post('/submit-email', (req, res) => {
     const email = req.body.email;
