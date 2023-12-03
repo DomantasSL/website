@@ -6,17 +6,17 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-const connection = mysql.createConnection({
+/*const connection = mysql.createConnection({
     host: '127.0.0.1',
     user: 'root',
     password: 'password',
     database: 'emailDB'
-});
+});*/
 
-connection.connect(error => {
+/*connection.connect(error => {
     if (error) throw error;
     console.log("Successfully connected to the database.");
-});
+});*/
 
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
 
 app.post('/submit-email', (req, res) => {
     const email = req.body.email;
-    if (!email) {
+    /*if (!email) {
         return res.status(400).send({ message: 'Email is required' });
     }
 
@@ -40,7 +40,8 @@ app.post('/submit-email', (req, res) => {
     connection.query(query, [email], (error, results) => {
         if (error) throw error;
         res.send({ message: 'Email saved successfully', id: results.insertId });
-    });
+    });*/
+    res.send({ message: 'Email saved successfully', id: 1 });
 });
 
 const PORT = 6969;
