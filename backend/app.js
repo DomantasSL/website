@@ -44,7 +44,7 @@ app.post('/submit-email', (req, res) => {
     res.send({ message: 'Email saved successfully', id: 1 });
 });
 
-const PORT = 6969;
+const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });

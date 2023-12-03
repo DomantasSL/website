@@ -31,7 +31,7 @@ const LandingPage = () => {
   const [email, setEmail] = useState('');
 
   const sendEmail = () => {
-    fetch('http://website.localhost:6969/submit-email', {
+    fetch('http://website.localhost/submit-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
