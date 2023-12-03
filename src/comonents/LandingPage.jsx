@@ -31,7 +31,7 @@ const LandingPage = () => {
   const [email, setEmail] = useState('');
 
   const sendEmail = () => {
-    fetch('http://localhost:6969/submit-email', {
+    fetch('http://website.localhost:6969/submit-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -42,7 +42,7 @@ const LandingPage = () => {
     .then(data => console.log(data))
     .catch(error => console.error('Error:', error));
   }
-  
+
   return (
     <>
       <header className="header">
