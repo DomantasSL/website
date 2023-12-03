@@ -15,6 +15,7 @@ import s3 from "../assets/s3.png.svg";
 import s4 from "../assets/s4.png.svg";
 import Home_avtar from "../assets/main.svg";
 import { Typewriter } from "react-simple-typewriter";
+import React, { useState } from 'react';
 
 var navbar = document.querySelector("header");
 window.onscroll = function () {
@@ -27,6 +28,21 @@ window.onscroll = function () {
 };
 
 const LandingPage = () => {
+  const [email, setEmail] = useState('');
+
+  const sendEmail = () => {
+    fetch('http://localhost:6969/submit-email', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email: email }),
+    })
+    .then(response => response.json())
+    .then(data => console.log(data))
+    .catch(error => console.error('Error:', error));
+  }
+  
   return (
     <>
       <header className="header">
@@ -38,13 +54,13 @@ const LandingPage = () => {
           <nav>
             <ul>
               <li>
-                <a href="#hero">home</a>
+                <a href="#home">home</a>
               </li>
               <li>
-                <a href="#intro">about</a>
+                <a href="#about">about</a>
               </li>
               <li>
-                <a href="#portfolio">services</a>
+                <a href="#services">services</a>
               </li>
               <li>
                 <a href="#contact">contact</a>
@@ -286,8 +302,9 @@ const LandingPage = () => {
               className="email"
               name="email"
               placeholder="email address"
+              onChange={(e) => setEmail(e.target.value)}
             />
-            <button>Get Started</button>
+            <button onClick={sendEmail}>Get Started</button>
           </div>
         </div>
       </section>
