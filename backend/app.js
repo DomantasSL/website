@@ -18,13 +18,13 @@ app.use(bodyParser.json());
     console.log("Successfully connected to the database.");
 });*/
 
+app.use(express.static(path.join(__dirname, 'build')));
+
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
     next();
 });
-
-app.use(express.static(path.join(__dirname, 'build')));
 
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname + '/build/index.html'));
@@ -32,6 +32,7 @@ app.get('/', (req, res) => {
 
 app.post('/submit-email', (req, res) => {
     const email = req.body.email;
+    console.log(email)
     /*if (!email) {
         return res.status(400).send({ message: 'Email is required' });
     }
