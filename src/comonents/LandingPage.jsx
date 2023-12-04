@@ -19,7 +19,6 @@ import React, { useState } from 'react';
 
 var navbar = document.querySelector("header");
 window.onscroll = function () {
-  // pageYOffset or scrollY
   if (window.pageYOffset > 0) {
     navbar.classList.add("scrolled");
   } else {
@@ -31,7 +30,7 @@ const LandingPage = () => {
   const [email, setEmail] = useState('');
 
   const sendEmail = () => {
-    fetch('http://website.localhost/submit-email', {
+    fetch('http://localhost/submit-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
