@@ -6,17 +6,17 @@ const bodyParser = require('body-parser');
 const app = express();
 app.use(bodyParser.json());
 
-/*const connection = mysql.createConnection({
-    host: '127.0.0.1',
+const connection = mysql.createConnection({
+    host: 'db',
     user: 'root',
     password: 'password',
     database: 'emailDB'
-});*/
+});
 
-/*connection.connect(error => {
+connection.connect(error => {
     if (error) throw error;
     console.log("Successfully connected to the database.");
-});*/
+});
 
 app.use(express.static(path.join(__dirname, 'build')));
 
@@ -27,7 +27,7 @@ app.get('/', (req, res) => {
 app.post('/submit-email', (req, res) => {
     const email = req.body.email;
     console.log(email)
-    /*if (!email) {
+    if (!email) {
         return res.status(400).send({ message: 'Email is required' });
     }
 
@@ -35,8 +35,16 @@ app.post('/submit-email', (req, res) => {
     connection.query(query, [email], (error, results) => {
         if (error) throw error;
         res.send({ message: 'Email saved successfully', id: results.insertId });
-    });*/
+    });
     res.send({ message: 'Email saved successfully', id: 1 });
+});
+
+app.get('/show-email', (req, res) => {
+   const query = 'SELECT * FROM emails';
+    connection.query(query, (error, results) => {
+        if (error) throw error;
+        res.send({results});
+    });
 });
 
 const PORT = 80;
