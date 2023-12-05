@@ -8,7 +8,7 @@ const app = express();
 app.use(bodyParser.json());
 
 app.use(cors({
-    origin: '*'
+    origin: ['http://vhost1/', 'http://website.localhost/']
 }));
 
 const connection = mysql.createConnection({
