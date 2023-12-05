@@ -18,6 +18,12 @@ connection.connect(error => {
     console.log("Successfully connected to the database.");
 });
 
+app.use(express.static(path.join(__dirname, 'build')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname + '/build/index.html'));
+});
+
 app.post('/submit-email', (req, res) => {
     const email = req.body.email;
     console.log(email)
@@ -41,7 +47,7 @@ app.get('/show-email', (req, res) => {
     });
 });
 
-const PORT = 6969;
+const PORT = 80;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
