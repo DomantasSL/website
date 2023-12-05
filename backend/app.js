@@ -47,7 +47,7 @@ app.get('/show-email', (req, res) => {
     });
 });
 
-const PORT = 4444;
+const PORT = 80;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
 });
