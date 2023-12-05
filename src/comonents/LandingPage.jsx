@@ -30,7 +30,7 @@ const LandingPage = () => {
   const [email, setEmail] = useState('');
 
   const sendEmail = () => {
-    fetch('/submit-email', {
+    fetch('http://vhost1-backend:6969/submit-email', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
