@@ -1,0 +1,1 @@
+Stiprus aštuoni 💪
